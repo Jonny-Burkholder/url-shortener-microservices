@@ -18,7 +18,7 @@ func main() {
 
 func handleGetShorty(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
-	case http.MethodGet:
+	case http.MethodPost:
 		//do stuff
 		fmt.Println(r.Body)
 	default:
