@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -19,6 +20,7 @@ func handleGetShorty(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		//do stuff
+		fmt.Println(r.Body)
 	default:
 		http.Error(w, "Unable to process request", http.StatusBadRequest)
 	}
