@@ -30,10 +30,7 @@ func handleGetShorty(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("HTTP Method:")
-	fmt.Println(r.Method)
-	fmt.Println("printing url body:")
-	fmt.Println(r.Body)
+
 	switch r.Method {
 	case http.MethodOptions:
 		return
@@ -41,7 +38,7 @@ func handleGetShorty(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "%s", b)
 		return
 	default:
-		log.Println("Error!")
+		log.Printf("Error, invalid request type: %v\n", r.Method)
 		http.Error(w, "Unable to process request", http.StatusBadRequest)
 		return
 	}
