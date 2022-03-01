@@ -18,26 +18,22 @@ func main() {
 }
 
 func handleGetShorty(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Welcome!")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("content-type", "application/json;utf=8")
 	data := "get.shorty/1"
-	b, err := json.Marshal(map[string]interface{}{
-		"api": map[string]interface{}{
-			"name":    "get shorty",
-			"version": 0.1,
-			"data":    data,
-		},
-	})
+	b, err := json.Marshal(data)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("HTTP Method:")
 	fmt.Println(r.Method)
+	fmt.Println("printing url body:")
+	fmt.Println(r.Body)
 	switch r.Method {
 	case http.MethodPost:
 		//do stuff
-		fmt.Println(r.Body)
 	default:
+		log.Println("Error!")
 		http.Error(w, "Unable to process request", http.StatusBadRequest)
 	}
 	fmt.Fprintf(w, "%s", b)
