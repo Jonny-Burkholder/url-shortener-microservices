@@ -19,7 +19,6 @@ func main() {
 
 func handleGetShorty(fn http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("content-type", "application/json;utf=8")
 		data := "get.shorty/1"
 		b, err := json.Marshal(data)
@@ -31,6 +30,9 @@ func handleGetShorty(fn http.HandlerFunc) http.HandlerFunc {
 		fmt.Println("printing url body:")
 		fmt.Println(r.Body)
 		switch r.Method {
+		case http.MethodOptions:
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			fn(w, r)
 		case http.MethodPost:
 			//do stuff
 		default:
