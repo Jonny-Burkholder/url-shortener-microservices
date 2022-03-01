@@ -35,6 +35,7 @@ func handleGetShorty(w http.ResponseWriter, r *http.Request) {
 	default:
 		log.Println("Error!")
 		http.Error(w, "Unable to process request", http.StatusBadRequest)
+		return
 	}
 	fmt.Fprintf(w, "%s", b)
 }
